@@ -25,7 +25,7 @@ SECRET_KEY = 'f_&hu0@ru0i@k#_azl(@*e+tq4m^wujvjel#1kvbcfi0s(gdml'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gss-icefloe.localtunnel.me']
 
 
 # Application definition

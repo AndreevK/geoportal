@@ -4,7 +4,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.core.serializers import serialize
 from django.http import HttpResponse
-from models import RasterData
+from models import RadarData
+from models import OpticData
+
 from models import Incidences
 import json
 from django.http import JsonResponse
@@ -18,15 +20,26 @@ class HomePageView(TemplateView):
 class JoraFronend33(TemplateView):
 	template_name = 'agricom_2.html'
 
-def raster_datasets(request):
+def radar_datasets(request):
 	if request.method == 'GET':
 		starttime = request.GET.get('starttime')
 		endtime =  request.GET.get('endtime')
 		if starttime is None:
-			queryset = serialize('geojson', RasterData.objects.all())
+			queryset = serialize('geojson', RadarData.objects.all())
 		else:
-			queryset = serialize('geojson', RasterData.objects.filter(ingestion__gte=starttime, ingestion__lte=endtime))
+			queryset = serialize('geojson', RadarData.objects.filter(ingestion__gte=starttime, ingestion__lte=endtime))
 	return HttpResponse(queryset, content_type='json')
+
+def optic_datasets(request):
+	if request.method == 'GET':
+		starttime = request.GET.get('starttime')
+		endtime =  request.GET.get('endtime')
+		if starttime is None:
+			queryset = serialize('geojson', OpticData.objects.all())
+		else:
+			queryset = serialize('geojson', OpticData.objects.filter(ingestion__gte=starttime, ingestion__lte=endtime))
+	return HttpResponse(queryset, content_type='json')
+
 
 def incidences_datasets(request):
 	points = serialize('geojson', Incidences.objects.all())

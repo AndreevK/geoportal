@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import admin
-from .models import Incidences, RasterData
+from .models import Incidences, RadarData
 # from django.contrib.gis.db import OSMGeoAdmin
 from leaflet.admin import LeafletGeoAdmin
 
@@ -18,4 +18,4 @@ class RastersAdmin(LeafletGeoAdmin):
 
 
 admin.site.register(Incidences, IncidencesAdmin)
-admin.site.register(RasterData, RastersAdmin)
+admin.site.register(RadarData, RastersAdmin)

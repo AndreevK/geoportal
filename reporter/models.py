@@ -13,7 +13,7 @@ class Incidences(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class RasterData(models.Model):
+class RadarData(models.Model):
     fid = models.AutoField(primary_key=True)
     the_geom = models.PolygonField(blank=True, null=True)
     location = models.CharField(max_length=255, blank=True, null=True)
@@ -23,6 +23,18 @@ class RasterData(models.Model):
     class Meta:
         managed = False
         db_table = 'geoportal'
+
+class OpticData(models.Model):
+    fid = models.AutoField(primary_key=True)
+    the_geom = models.PolygonField(blank=True, null=True)
+    location = models.CharField(max_length=255, blank=True, null=True)
+    ingestion = models.DateTimeField(blank=True, null=True)
+    elevation = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'geoportal_optic'
+
 
 
     def __unicode__(self):
